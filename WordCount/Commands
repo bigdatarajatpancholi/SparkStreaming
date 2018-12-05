@@ -1,0 +1,5 @@
+#For cloning the repo
+git clone https://github.com/bigdatarajatpancholi/SparkStreaming.git
+
+#for updating the repo if already cloned
+cd ~/SparkStreaming && git pull origin master
