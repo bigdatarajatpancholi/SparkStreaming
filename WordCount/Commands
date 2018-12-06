@@ -3,3 +3,8 @@ git clone https://github.com/bigdatarajatpancholi/SparkStreaming.git
 
 #for updating the repo if already cloned
 cd ~/SparkStreaming && git pull origin master
+
+#for giving the y million times in a second to the listener, here nc is the dummy server.
+yes|nc -lk 9999
+
+
