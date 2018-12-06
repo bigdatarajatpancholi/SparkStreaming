@@ -3,6 +3,9 @@ git clone https://github.com/bigdatarajatpancholi/SparkStreaming.git
 #for updating the git repo
 cd ~/SparkStreaming && git pull origin master
 
+#or we can use below command instead of line 4
+cd ~/SparkStreaming && git checkout . && git pull origin master
+
 #changing the directory
 cd ~/SparkStreaming/word_count_sbt
 
@@ -16,3 +19,9 @@ sbt clean
 #or we can write like below:-
 sbt clean && sbt package
 
+
+#Submitting the jar
+spark-submit target/scala-2.11/word-count_2.11-1.0.jar
+
+#In another window
+nc -lk 9999
