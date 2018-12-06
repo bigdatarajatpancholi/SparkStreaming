@@ -6,20 +6,20 @@ In this project we will build a spark application which will consume and process
 ## Step 0 - Getting the repository
 
 
-    # Clone CloudxLab BigData repository
+    # Clone the repository
 
-    git clone https://github.com/cloudxlab/bigdata.git
+    git clone https://github.com/bigdatarajatpancholi/SparkStreaming.git
 
     # If already cloned then update the repository
 
-    cd ~/bigdata && git pull origin master
+    cd ~/SparkStreaming && git pull origin master
 
-    # Code is inside spark/examples/streaming/word_count_kafka
+    # Code is inside Word_Count_Kafka
 
     # Build the sbt project
-    cd spark/examples/streaming/word_count_kafka
-    
-    # To understand the code please go thru KafkaWordCount.scala
+    cd Word_Count_Kafka
+    sbt clean && sbt package
+    # To understand the code please go thru WordCountKafka.scala
 
 
 ## Step 1 - Interacting with Kafka - Create Topic
@@ -35,12 +35,12 @@ Execute the following commands on the terminal. Please read thru the comments to
     zookeeper-client
     
     
-    # I found the for me the location of one of the brokers was ip-172-xx-xx-xxx.ec2.internal:6667
+    # I found the for me the location of one of the brokers was ip-172-31-38-146.ec2.internal:6667
        
     # Create the topic
     # Replace localhost with the hostname of node where zookeeper server is running. Generally, zk runs on all hosts on the cluster.
     # Replace test with your topic name
-    kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic sandeepgiri9034_test
+    kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic rajatpancholi_test
 
     # Check if topic is created
     kafka-topics.sh  --list --zookeeper localhost:2181
@@ -58,20 +58,20 @@ Execute the following commands on the terminal. Please read thru the comments to
     get /brokers/ids/1003
 
     
-    # test is a topicname here. Replace test with some name specific to your username like sandeepgiri9034_test
+    # test is a topicname here. Replace test with some name specific to your username like rajatpancholi_test
     # Replace localhost with the hostname of broker
     # Replace test with your topic name
-    kafka-console-producer.sh --broker-list ip-172-xx-xx-xxx.ec2.internal:6667 --topic sandeepgiri9034_test
+    kafka-console-producer.sh --broker-list ip-172-31-38-146.ec2.internal:6667 --topic rajatpancholi_test
 
     # Push messages to topic, type "my first kafka topic"
 
     # Test if producer is working by consuming messages in another terminal
     # Replace test with your topic name
-    kafka-console-consumer.sh --zookeeper localhost:2181 --topic sandeepgiri9034_test --from-beginning
+    kafka-console-consumer.sh --zookeeper localhost:2181 --topic rajatpancholi_test --from-beginning
 
     # Produce a lot
     # Replace localhost with the hostname of broker
-    kafka-console-producer.sh --broker-list ip-172-xx-xx-xxx.ec2.internal:6667 --topic sandeepgiri9034_test 
+    kafka-console-producer.sh --broker-list ip-172-31-38-146.ec2.internal:6667 --topic rajatpancholi_test 
     
     #This will give you a prompt to type the input which will be pushed to the topic
     # Say I typed here: this is a cow this is a bow
@@ -91,11 +91,11 @@ Execute the following commands on the terminal. Please read thru the comments to
     # Run the Spark streaming code
     # Use new topic
     # Replace sandeepgiri9034_test with your new topic name
-    spark-submit --class "KafkaWordCount" --jars spark-streaming-kafka-0-10-assembly_2.11-2.3.0.jar target/scala-2.11/kafkawordcount_2.11-1.0.jar ip-172-xx-xx-xxx.ec2.internal:6667 spark-streaming-consumer-group sandeepgiri9034_test
+    spark-submit --class "KafkaWordCount" --jars spark-streaming-kafka-0-10-assembly_2.11-2.3.0.jar target/scala-2.11/kafkawordcount_2.11-1.0.jar ip-172-31-38-146.ec2.internal:6667 spark-streaming-consumer-group rajatpancholi_test
 
     
     #Optional: If you dont want too much debugging information you can redirect some to /dev/null device in unix
-    spark-submit --class "KafkaWordCount" --jars spark-streaming-kafka-0-10-assembly_2.11-2.3.0.jar target/scala-2.11/kafkawordcount_2.11-1.0.jar ip-172-xx-xx-xxx.ec2.internal:6667 spark-streaming-consumer-group sandeepgiri9034_test 2>/dev/null
+    spark-submit --class "KafkaWordCount" --jars spark-streaming-kafka-0-10-assembly_2.11-2.3.0.jar target/scala-2.11/kafkawordcount_2.11-1.0.jar ip-172-31-38-146.ec2.internal:6667 spark-streaming-consumer-group rajatpancholi_test 2>/dev/null
     
 This will start printing the word count of whatever you are typing in step 2.
 
