@@ -1,0 +1,11 @@
+#for updating the git repo
+cd ~/SparkStreaming && git pull origin master
+
+#changing the directory
+cd ~/SparkStreaming/word_count_sbt
+
+#running the sbt package command
+sbt package
+
+#to clean the previously pacakged code
+sbt clean
