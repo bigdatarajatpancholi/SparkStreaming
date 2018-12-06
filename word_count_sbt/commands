@@ -1,3 +1,5 @@
+git clone https://github.com/bigdatarajatpancholi/SparkStreaming.git
+
 #for updating the git repo
 cd ~/SparkStreaming && git pull origin master
 
@@ -9,3 +11,8 @@ sbt package
 
 #to clean the previously pacakged code
 sbt clean
+
+
+#or we can write like below:-
+sbt clean && sbt package
+
