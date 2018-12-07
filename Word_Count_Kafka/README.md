@@ -80,7 +80,7 @@ Execute the following commands on the terminal. Please read thru the comments to
     
     # Leave the producer prompt open and open a new terminal
     # If you are already not in the project folder, please change directory
-    cd ~/bigdata/spark/examples/streaming/word_count_kafka
+    cd ~/SparkStreaming/Word_Count_Kafka
     
     # Build the package
     # Note that there are only two files in the project: build.sbt and one scala program
@@ -90,9 +90,14 @@ Execute the following commands on the terminal. Please read thru the comments to
 
     # Run the Spark streaming code
     # Use new topic
-    # Replace sandeepgiri9034_test with your new topic name
-    spark-submit --class "KafkaWordCount" --jars spark-streaming-kafka-0-10-assembly_2.11-2.3.0.jar target/scala-2.11/kafkawordcount_2.11-1.0.jar ip-172-31-38-146.ec2.internal:6667 spark-streaming-consumer-group rajatpancholi_test
+    # Replace rajatpancholi_test with your new topic name
+    spark-submit --class "KafkaWordCount" --jars spark-streaming-kafka-0-10_2.11-2.3.0.jar target/scala-2.11/kafkawordcount_2.11-1.0.jar ip-172-31-38-146.ec2.internal:6667 spark-streaming-consumer-group rajatpancholi_test
 
+
+    #or use below command for spark-submit
+    
+    spark-submit --class "KafkaWordCount" target/scala-2.11/kafkawordcount_2.11-1.0.jar ip-172-31-38-146.ec2.internal:6667 spark-streaming-consumer-group rajatpancholi_test
+    
     
     #Optional: If you dont want too much debugging information you can redirect some to /dev/null device in unix
     spark-submit --class "KafkaWordCount" --jars spark-streaming-kafka-0-10-assembly_2.11-2.3.0.jar target/scala-2.11/kafkawordcount_2.11-1.0.jar ip-172-31-38-146.ec2.internal:6667 spark-streaming-consumer-group rajatpancholi_test 2>/dev/null
